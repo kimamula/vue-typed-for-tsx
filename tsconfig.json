@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es3",
+    "lib": ["DOM", "ES2015"]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
