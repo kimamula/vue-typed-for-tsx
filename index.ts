@@ -2,8 +2,14 @@ import _Vue = require('vue')
 import _Component from 'vue-class-component'
 import * as jsx from './lib/jsx'
 
-export type Vue<Props> = { new(): _Vue & Props & { _elementAttributesProperty: Props } }
-export const Vue: typeof _Vue & (new<Props>() => _Vue & Props & { _elementAttributesProperty: Props }) = _Vue
+interface CommonProps {
+  key?: string | number
+  ref?: string
+  slot?: string
+}
+
+export type Vue<Props> = typeof _Vue & { new(): _Vue & Props & { _elementAttributesProperty: Props & CommonProps } }
+export const Vue: typeof _Vue & (new<Props>() => _Vue & Props & { _elementAttributesProperty: Props & CommonProps }) = _Vue
 
 type Constructor = {
   new (...args: any[]): any
