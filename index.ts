@@ -8,7 +8,7 @@ interface CommonProps {
   slot?: string
 }
 
-export type Vue<Props> = typeof _Vue & { new(): _Vue & Props & { _elementAttributesProperty: Props & CommonProps } }
+export type VueClass<Props> = typeof _Vue & { new(): _Vue & Props & { _elementAttributesProperty: Props & CommonProps } }
 export const Vue: typeof _Vue & (new<Props>() => _Vue & Props & { _elementAttributesProperty: Props & CommonProps }) = _Vue
 
 type Constructor = {
@@ -17,6 +17,6 @@ type Constructor = {
 
 export const Component: typeof _Component & (
   <Props>(options: _Vue.ComponentOptions<any> & {
-    props: { [K in keyof Props]: _Vue.PropOptions | Constructor | Constructor[] } | (keyof Props)[]
-  }) => (<V extends Vue<Props>>(target: V) => V)
+    props: { [K in keyof Props]: _Vue.PropOptions | Constructor | Constructor[] | null } | (keyof Props)[]
+  }) => (<V extends VueClass<Props>>(target: V) => V)
 ) = _Component
