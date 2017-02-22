@@ -8,8 +8,9 @@ interface CommonProps {
   slot?: string
 }
 
-export type VueClass<Props, Data = {}> = typeof _Vue & { new(): _Vue & Props & Data & { _elementAttributesProperty: Props & CommonProps } }
-export const Vue: typeof _Vue & (new<Props, Data = {}>() => _Vue & Props & Data & { _elementAttributesProperty: Props & CommonProps }) = _Vue
+export type VueInstance<Props, Data> = _Vue & Props & Data & { _elementAttributesProperty: Props & CommonProps }
+export type VueClass<Props, Data = {}> = new() => VueInstance<Props, Data>
+export const Vue: typeof _Vue & (new<Props, Data = {}>() => VueInstance<Props, Data>) = _Vue
 
 type Constructor = {
   new (...args: any[]): any
