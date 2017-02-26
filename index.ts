@@ -23,6 +23,6 @@ export const Component: typeof _Component & (
 ) & (
   <Props, Data>(options: _Vue.ComponentOptions<any> & {
     props: { [K in keyof Props]: _Vue.PropOptions | Constructor | Constructor[] | null } | (keyof Props)[]
-    data: Data
+    data(this: VueInstance<Props, {}>): Data
   }) => (<V extends VueClass<Props, Data>>(target: V) => V)
 ) = _Component
